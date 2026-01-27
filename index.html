@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sagar | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo"><i class="fas fa-code"></i> Portfolio</h2>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Home Section with Photo Slider -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <span class="highlight">SURADA</span> <span class="highlight">SAGAR</span>
+                    </h1>
+                    <h2 class="subtitle">Full Stack Developer & Tech Innovator</h2>
+                    <p class="hero-description">Crafting innovative solutions with cutting-edge technologies.<br>Transforming ideas into powerful applications that drive business success.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToContact()">
+                            <i class="fas fa-paper-plane"></i> Get In Touch
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToProjects()">
+                            <i class="fas fa-briefcase"></i> View My Work
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-photo-section">
+                <div class="photo-carousel">
+                    <div class="carousel-slide active">
+                        <div class="photo-frame gradient-frame-1">
+                            <img src="sagar.jpg" alt="Portfolio Photo" class="portfolio-image">
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="display:none;">
+                        <div class="photo-frame gradient-frame-2">
+                            <div class="photo-placeholder photo-alt">
+                                <div class="graphic-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <p class="graphic-label">Development</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="display:none;">
+                        <div class="photo-frame gradient-frame-3">
+                            <div class="photo-placeholder photo-alt2">
+                                <div class="graphic-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <p class="graphic-label">Growth & Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev" onclick="prevSlide()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn next" onclick="nextSlide()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" onclick="goToSlide(0)"></span>
+                        <span class="indicator" onclick="goToSlide(1)"></span>
+                        <span class="indicator" onclick="goToSlide(2)"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    I am a Computer Science undergraduate with a passion for software development, 
+                    web technologies, and problem-solving. I have hands-on experience with modern 
+                    web technologies and love creating responsive, user-friendly applications.
+                </p>
+                <p class="about-text">
+                    I am actively seeking internship and entry-level opportunities to contribute 
+                    my skills and grow as a developer. I'm committed to continuous learning and 
+                    staying updated with the latest technologies.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="edu-item">
+                    <div class="edu-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="edu-content">
+                        <h3>B.Tech in Computer Science Engineering(IOT)</h3>
+                        <p class="edu-institute">Raghu Enginerring College</p>
+                        <p class="edu-duration"></p> 2022-2026 | CGPA: 8.14</p>
+                        <p class="edu-details">Computer Science Engineering with focus on Full StackWeb Development</p>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="edu-content">
+                        <h3>Intermediate (12th)</h3>
+                        <p class="edu-institute">Naryana junior college</p>
+                        <p class="edu-duration">Year: 2020-2022 | Percentage: 69.8%</p>
+                        <p class="edu-details">PCM (Physics, Chemistry, Mathematics)</p>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="edu-content">
+                        <h3>School (10th)</h3>
+                        <p class="edu-institute">DR KKR GOWTHAM SCHOOL</p>
+                        <p class="edu-duration">Year: 2020 | Percentage: 83.4%</p>
+                        <p class="edu-details">Central Board of Secondary Education (CBSE)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js-square"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-server"></i>
+                            <span>Express</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Database & Tools</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-grid">
+                <!-- Certification 1 -->
+                <div class="cert-card" onclick="openCertModal(0)">
+                    <div class="cert-logo">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <h3>Web Development Internship</h3>
+                    <p class="cert-issuer">Motioncut</p>
+                    <p class="cert-date">2025</p>
+                    <div class="cert-skills">HTML, CSS, JavaScript</div>
+                </div>
+
+                <!-- Certification 2 -->
+                <div class="cert-card" onclick="openCertModal(1)">
+                    <div class="cert-logo">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python Programming</h3>
+                    <p class="cert-issuer">Oasis Infobyte</p>
+                    <p class="cert-date">2025</p>
+                    <div class="cert-skills">Python, OOP, File Handling</div>
+                </div>
+
+                <!-- Certification 3 -->
+                <div class="cert-card" onclick="openCertModal(2)">
+                    <div class="cert-logo">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p class="cert-issuer">Native Soft Tech</p>
+                    <p class="cert-date">2025</p>
+                    <div class="cert-skills">HTML, CSS, JavaScript, Responsive</div>
+                </div>
+
+                <!-- Certification 4 -->
+                <div class="cert-card" onclick="openCertModal(3)">
+                    <div class="cert-logo">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Java Full Stack Web Development</h3>
+                    <p class="cert-issuer">Eduskills</p>
+                    <p class="cert-date">2025</p>
+                    <div class="cert-skills">React, Java, Spring Boot, MySQL</div>
+                </div>
+
+                <!-- Certification 5 -->
+                <div class="cert-card" onclick="openCertModal(4)">
+                    <div class="cert-logo">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>Android App Development</h3>
+                    <p class="cert-issuer">Google for Developers</p>
+                    <p class="cert-date">2025</p>
+                    <div class="cert-skills">Java, Kotlin, MVVM, Testing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Modal -->
+    <div id="certModal" class="cert-modal">
+        <div class="cert-modal-content">
+            <span class="cert-modal-close" onclick="closeCertModal()">&times;</span>
+            <div class="cert-modal-body">
+                <div class="cert-modal-image">
+                    <img id="certImage" src="" alt="Certification">
+                </div>
+                <div class="cert-modal-info">
+                    <h2 id="certTitle"></h2>
+                    <p class="modal-issuer"><strong>Issued by:</strong> <span id="certIssuer"></span></p>
+                    <p class="modal-date"><strong>Date:</strong> <span id="certDate"></span></p>
+                    <div class="modal-skills">
+                        <h3>Skills Covered:</h3>
+                        <div id="certSkillsList" class="skills-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Expense Tracker Web App</h3>
+                        <p class="project-description">
+                            A comprehensive expense tracking application that helps users manage their finances. 
+                            Features include expense categorization, budget tracking, data visualization with charts, 
+                            and monthly reports for financial insights.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">LocalStorage</span>
+                            <span class="tag">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Food Delivery Web Application</h3>
+                        <p class="project-description">
+                            A full-stack food delivery platform with restaurant listings, menu browsing, 
+                            order placement, real-time order tracking, and payment gateway integration. 
+                            Includes admin dashboard for restaurant management.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">MERN</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Stripe API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Threat Monitoring REST API</h3>
+                        <p class="project-description">
+                            A robust REST API for security threat monitoring and detection. 
+                            Provides real-time threat analysis, alert management, log aggregation, 
+                            and vulnerability assessment endpoints with comprehensive documentation.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Express</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">JWT Auth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Hyper Local Mobile Apps</h3>
+                        <p class="project-description">
+                            A mobile application connecting local businesses with nearby customers. 
+                            Features include location-based services, local vendor discovery, in-app messaging, 
+                            ratings and reviews, and community engagement tools.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Google Maps API</span>
+                            <span class="tag">Push Notifications</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AI-Powered Enterprise Business Insights Platform</h3>
+                        <p class="project-description">
+                            An advanced analytics platform using machine learning to provide actionable business insights. 
+                            Includes predictive analytics, data visualization dashboards, KPI tracking, 
+                            and AI-powered recommendations for strategic decision making.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">D3.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cloud-Based Cyber Security Threat Detection System</h3>
+                        <p class="project-description">
+                            A cloud-native security platform for detecting and preventing cyber threats in real-time. 
+                            Utilizes ML algorithms for anomaly detection, provides automated incident response, 
+                            compliance reporting, and multi-cloud threat visibility.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">AWS/Azure</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'd love to hear from you! Feel free to reach out for any opportunities or collaborations.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:sagarsurada8@gmail.com">sagarsurada8@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+919908762341">+91 9908762341</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Visakhapatnam, Andhra pradesh</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/surada-sagar-b1b8a5345" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/sagarsurada8" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/SagarSurada" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/_sagar_santosh_/" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sagar. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
