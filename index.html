@@ -50,7 +50,7 @@
                 <div class="photo-carousel">
                     <div class="carousel-slide active">
                         <div class="photo-frame gradient-frame-1">
-                            <img src="sagar.jpg" alt="Portfolio Photo" class="portfolio-image">
+                            <img src="PICC.jpeg" alt="Portfolio Photo" class="portfolio-image">
                         </div>
                     </div>
                     <div class="carousel-slide" style="display:none;">
@@ -318,132 +318,115 @@
     <!-- Projects -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
+            <div class="section-heading">
+                <p class="section-eyebrow">Featured Work</p>
+                <h2 class="section-title">Projects Built to Impress Recruiters</h2>
+                <p class="section-description">
+                    These projects highlight strong UI/UX, real-world problem solving, and modern full-stack development skills.
+                </p>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-wallet"></i>
+                <article class="project-card" onclick="openProjectModal(0)">
+                    <div class="project-media">
+                        <img class="project-image" src="" alt="Online Food Delivery Application" />
+                        <div class="project-badge">Full Stack</div>
                     </div>
                     <div class="project-content">
-                        <h3>Expense Tracker Web App</h3>
+                        <h3>Online Food Delivery Application</h3>
                         <p class="project-description">
-                            A comprehensive expense tracking application that helps users manage their finances. 
-                            Features include expense categorization, budget tracking, data visualization with charts, 
-                            and monthly reports for financial insights.
+                            A polished food ordering platform with restaurant browsing, cart flow, order tracking, and a clean admin-ready experience.
                         </p>
                         <div class="project-tags">
                             <span class="tag">React</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">LocalStorage</span>
-                            <span class="tag">Chart.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Food Delivery Web Application</h3>
-                        <p class="project-description">
-                            A full-stack food delivery platform with restaurant listings, menu browsing, 
-                            order placement, real-time order tracking, and payment gateway integration. 
-                            Includes admin dashboard for restaurant management.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">MERN</span>
                             <span class="tag">Node.js</span>
                             <span class="tag">MongoDB</span>
-                            <span class="tag">Stripe API</span>
+                            <span class="tag">Stripe</span>
                         </div>
+                        <button class="project-cta" type="button" onclick="event.stopPropagation(); openProjectModal(0)">View Project</button>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-shield-alt"></i>
+                <article class="project-card" onclick="openProjectModal(1)">
+                    <div class="project-media">
+                        <img class="project-image" src="" alt="Sales Performance Analysis Dashboard" />
+                        <div class="project-badge">Dashboards</div>
                     </div>
                     <div class="project-content">
-                        <h3>Threat Monitoring REST API</h3>
+                        <h3>Sales Performance Analysis Dashboard</h3>
                         <p class="project-description">
-                            A robust REST API for security threat monitoring and detection. 
-                            Provides real-time threat analysis, alert management, log aggregation, 
-                            and vulnerability assessment endpoints with comprehensive documentation.
+                            A modern analytics dashboard that turns sales data into clear insights with charts, KPIs, trends, and executive-friendly visuals.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">JWT Auth</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Insights</span>
                         </div>
+                        <button class="project-cta" type="button" onclick="event.stopPropagation(); openProjectModal(1)">View Project</button>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-mobile-alt"></i>
+                <article class="project-card" onclick="openProjectModal(2)">
+                    <div class="project-media">
+                        <img class="project-image" src="" alt="IoT-Based Automated Black Box" />
+                        <div class="project-badge">IoT</div>
                     </div>
                     <div class="project-content">
-                        <h3>Hyper Local Mobile Apps</h3>
+                        <h3>IoT-Based Automated Black Box</h3>
                         <p class="project-description">
-                            A mobile application connecting local businesses with nearby customers. 
-                            Features include location-based services, local vendor discovery, in-app messaging, 
-                            ratings and reviews, and community engagement tools.
+                            An intelligent embedded solution designed for automated monitoring, real-time sensing, and smart event-based decision making in connected systems.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">React Native</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Google Maps API</span>
-                            <span class="tag">Push Notifications</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">Embedded</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Automation</span>
                         </div>
+                        <button class="project-cta" type="button" onclick="event.stopPropagation(); openProjectModal(2)">View Project</button>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>AI-Powered Enterprise Business Insights Platform</h3>
-                        <p class="project-description">
-                            An advanced analytics platform using machine learning to provide actionable business insights. 
-                            Includes predictive analytics, data visualization dashboards, KPI tracking, 
-                            and AI-powered recommendations for strategic decision making.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">TensorFlow</span>
-                            <span class="tag">Flask</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">D3.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Cloud-Based Cyber Security Threat Detection System</h3>
-                        <p class="project-description">
-                            A cloud-native security platform for detecting and preventing cyber threats in real-time. 
-                            Utilizes ML algorithms for anomaly detection, provides automated incident response, 
-                            compliance reporting, and multi-cloud threat visibility.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">AWS/Azure</span>
-                            <span class="tag">Kubernetes</span>
-                            <span class="tag">Python</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Elasticsearch</span>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
+
+    <div id="projectModal" class="project-modal">
+        <div class="project-modal-dialog">
+            <button class="project-modal-close" type="button" onclick="closeProjectModal()">&times;</button>
+            <div class="project-modal-body">
+                <!-- Single Image View -->
+                <img id="projectModalImage" src="" alt="Project preview" />
+                
+                <!-- Carousel for Dashboard -->
+                <div id="dashboardCarousel" class="project-carousel" style="display:none;">
+                    <div class="carousel-images">
+                        <img id="dashboardImg1" src="" alt="Dashboard 1" class="carousel-image active">
+                        <img id="dashboardImg2" src="" alt="Dashboard 2" class="carousel-image">
+                    </div>
+                    <button class="carousel-nav prev" onclick="prevDashboardImage()">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" onclick="nextDashboardImage()">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" onclick="showDashboardImage(0)"></span>
+                        <span class="indicator" onclick="showDashboardImage(1)"></span>
+                    </div>
+                </div>
+
+                <div class="project-modal-info">
+                    <p class="project-modal-eyebrow">Featured Project</p>
+                    <h3 id="projectModalTitle"></h3>
+                    <p id="projectModalDescription"></p>
+                    <div class="project-modal-highlights">
+                        <h4>Highlights</h4>
+                        <ul id="projectModalHighlights"></ul>
+                    </div>
+                    <div id="projectModalTags" class="project-tags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact -->
     <section id="contact" class="contact">

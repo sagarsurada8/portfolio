@@ -197,6 +197,161 @@ const certifications = [
 
 ];
 
+const projects = [
+    {
+        title: "Online Food Delivery Application",
+        description: "A modern food ordering platform designed for smooth browsing, cart flow, order placement, and a polished user experience.",
+        highlights: [
+            "Responsive online ordering experience",
+            "Restaurant listing and menu browsing",
+            "Cart, checkout, and order tracking flow",
+            "Scalable full-stack architecture"
+        ],
+        tags: ["React", "Node.js", "MongoDB", "Stripe"],
+        image: "FOOD APPLICATION.png"
+    },
+    {
+        title: "Sales Performance Analysis Dashboard",
+        description: "A business-focused analytics dashboard that transforms sales data into clear KPIs, trends, and decision-ready insights.",
+        highlights: [
+            "Executive dashboard with key metrics",
+            "Interactive charts and trend analysis",
+            "Sales performance tracking by region and product",
+            "Clear visual storytelling for stakeholders"
+        ],
+        tags: ["Power BI", "SQL", "Analytics", "Insights"],
+        image: "POWER BI.png"
+    },
+    {
+        title: "IoT-Based Automated Black Box",
+        description: "An intelligent IoT-based solution for automated monitoring, real-time sensing, and smart event-based decision making.",
+        highlights: [
+            "Real-time data collection and monitoring",
+            "Automation-focused embedded workflow",
+            "Smart trigger and detection logic",
+            "Practical IoT system design"
+        ],
+        tags: ["IoT", "Embedded", "Sensors", "Automation"],
+        image: "iot-blackbox.jpeg"
+    }
+];
+
+function createPlaceholderImage(title, colors) {
+    const safeTitle = (title || 'Project').replace(/</g, '&lt;');
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+            <defs>
+                <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="${colors[0]}" />
+                    <stop offset="100%" stop-color="${colors[1]}" />
+                </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#g)" />
+            <circle cx="260" cy="220" r="160" fill="rgba(255,255,255,0.18)" />
+            <circle cx="930" cy="600" r="220" fill="rgba(255,255,255,0.14)" />
+            <rect x="220" y="220" width="760" height="320" rx="32" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.32)" stroke-width="4" />
+            <text x="600" y="395" text-anchor="middle" font-size="44" font-family="Segoe UI, Arial, sans-serif" font-weight="700" fill="white">${safeTitle}</text>
+        </svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function setProjectImage(imageElement, project) {
+    imageElement.src = project.image || createPlaceholderImage(project.title, ['#4f46e5', '#7c3aed']);
+    imageElement.onerror = () => {
+        imageElement.src = createPlaceholderImage(project.title, ['#0f172a', '#4338ca']);
+    };
+}
+
+function populateProjectImages() {
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        const imageElement = card.querySelector('.project-image');
+        if (imageElement) {
+            setProjectImage(imageElement, projects[index]);
+        }
+    });
+}
+
+function openProjectModal(index) {
+    const project = projects[index];
+    const modal = document.getElementById('projectModal');
+    const singleImage = document.getElementById('projectModalImage');
+    const carouselDiv = document.getElementById('dashboardCarousel');
+
+    if (!project || !modal) return;
+
+    document.getElementById('projectModalTitle').textContent = project.title;
+    document.getElementById('projectModalDescription').textContent = project.description;
+
+    // Check if this is the dashboard project (index 1)
+    if (index === 1) {
+        // Show carousel for dashboard
+        singleImage.style.display = 'none';
+        carouselDiv.style.display = 'block';
+        
+        document.getElementById('dashboardImg1').src = 'POWER BI.png';
+        document.getElementById('dashboardImg2').src = 'sales-dashboard.png';
+        
+        currentDashboardImage = 0;
+        showDashboardImage(0);
+    } else {
+        // Show single image for other projects
+        carouselDiv.style.display = 'none';
+        singleImage.style.display = 'block';
+        singleImage.src = project.image || createPlaceholderImage(project.title, ['#4f46e5', '#7c3aed']);
+        singleImage.onerror = () => {
+            singleImage.src = createPlaceholderImage(project.title, ['#0f172a', '#4338ca']);
+        };
+    }
+
+    const highlightsList = document.getElementById('projectModalHighlights');
+    highlightsList.innerHTML = project.highlights.map(item => `<li>${item}</li>`).join('');
+
+    const tagsContainer = document.getElementById('projectModalTags');
+    tagsContainer.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+    modal.style.display = 'block';
+}
+
+// Dashboard Carousel Functions
+let currentDashboardImage = 0;
+
+function showDashboardImage(index) {
+    const img1 = document.getElementById('dashboardImg1');
+    const img2 = document.getElementById('dashboardImg2');
+    const indicators = document.querySelectorAll('#dashboardCarousel .indicator');
+
+    img1.classList.remove('active');
+    img2.classList.remove('active');
+    indicators.forEach(ind => ind.classList.remove('active'));
+
+    if (index === 0) {
+        img1.classList.add('active');
+        indicators[0].classList.add('active');
+    } else {
+        img2.classList.add('active');
+        indicators[1].classList.add('active');
+    }
+
+    currentDashboardImage = index;
+}
+
+function nextDashboardImage() {
+    currentDashboardImage = (currentDashboardImage + 1) % 2;
+    showDashboardImage(currentDashboardImage);
+}
+
+function prevDashboardImage() {
+    currentDashboardImage = (currentDashboardImage - 1 + 2) % 2;
+    showDashboardImage(currentDashboardImage);
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // Open Certification Modal
 function openCertModal(index) {
     const cert = certifications[index];
@@ -222,8 +377,16 @@ function closeCertModal() {
 
 // Close modal when clicking outside
 window.onclick = function(event) {
-    const modal = document.getElementById('certModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
+    const certModal = document.getElementById('certModal');
+    const projectModal = document.getElementById('projectModal');
+
+    if (event.target === certModal) {
+        certModal.style.display = 'none';
     }
-}
+
+    if (event.target === projectModal) {
+        projectModal.style.display = 'none';
+    }
+};
+
+populateProjectImages();
