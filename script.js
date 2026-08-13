@@ -1,392 +1,587 @@
-// Carousel Functions
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const indicators = document.querySelectorAll('.indicator');
+/* =====================================================
+   SAGAR PORTFOLIO JAVASCRIPT
+===================================================== */
 
-function showSlide(index) {
-    // Remove active class from all slides and indicators
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
 
-    // Add active class to current slide and indicator
-    if (slides[index]) {
-        slides[index].classList.add('active');
-    }
-    if (indicators[index]) {
-        indicators[index].classList.add('active');
-    }
+/* ================= MOBILE MENU ================= */
 
-    currentSlide = index;
-}
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.querySelector(".nav-menu");
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
+if (menuToggle) {
 
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
+    menuToggle.addEventListener("click", () => {
 
-function goToSlide(index) {
-    showSlide(index);
-}
+        navMenu.classList.toggle("open");
 
-// Auto-rotate carousel every 5 seconds
-// setInterval(nextSlide, 5000);
-
-// Scroll to Contact Section
-function scrollToContact() {
-    document.getElementById("contact").scrollIntoView({
-        behavior: "smooth"
     });
+
 }
 
-// Scroll to Projects Section
-function scrollToProjects() {
-    document.getElementById("projects").scrollIntoView({
-        behavior: "smooth"
+
+/* Close mobile menu */
+
+document.querySelectorAll(".nav-link").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navMenu.classList.remove("open");
+
     });
-}
 
-// Animated Counter for Statistics
-function animateCounters() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    statNumbers.forEach(element => {
-        const target = parseInt(element.getAttribute('data-count'));
-        let current = 0;
-        const increment = target / 50;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target + '+';
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current);
-            }
-        }, 30);
-    });
-}
+});
 
-// Trigger counter animation when section is visible
-const statsSection = document.getElementById('stats');
-if (statsSection) {
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    });
-    statsObserver.observe(statsSection);
-}
 
-// Add active class to nav links on scroll
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
+/* ================= ACTIVE NAVIGATION ================= */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+function updateActiveNavigation() {
+
+    let current = "";
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
 
-        if (window.scrollY >= sectionTop - 200) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
+        const sectionTop = section.offsetTop - 180;
+
+        if (window.scrollY >= sectionTop) {
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateActiveNavigation);
+
+
+/* ================= SCROLL REVEAL ================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    revealObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
             });
 
-            const activeLink = document.querySelector(`a[href="#${section.id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
+        },
+
+        {
+            threshold: 0.12
         }
-    });
+
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
 });
 
-// Smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
 
-// Add animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+/* ================= CERTIFICATIONS ================= */
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe cards and items
-document.querySelectorAll('.project-card, .cert-card, .edu-item, .skill-category').forEach(el => {
-    observer.observe(el);
-});
-
-// Add CSS animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Certification Data
 const certifications = [
+
     {
-        title: "Web Development internship",
+        title: "NASSCOM Certification",
+        issuer: "NASSCOM",
+        date: "2026",
+        image: "nasscom.png",
+        skills: [
+            "Data Analytics",
+            "Power BI",
+            "Excel",
+            "Business Intelligence",
+            "Analytical Thinking"
+        ]
+    },
+
+    {
+        title: "Web Development Internship",
         issuer: "Motioncut",
         date: "2025",
         image: "motioncut.jpg",
-        skills: ["HTML", "CSS", "JavaScript", "Responsive Design", "Web Standards"]
+        skills: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Responsive Design"
+        ]
     },
+
     {
         title: "Python Programming",
-        issuer: "oasis infobyte",
+        issuer: "Oasis Infobyte",
         date: "2025",
         image: "oasis info byte.jpg",
-        skills: ["Python", "OOP","File Handling"]
+        skills: [
+            "Python",
+            "OOP",
+            "File Handling"
+        ]
     },
+
     {
-        title: "web development",
-        issuer: "native soft tech",
+        title: "Web Development",
+        issuer: "Native Soft Tech",
         date: "2025",
         image: "native soft tech.jpg",
-        skills: ["HTML", "CSS", "JavaScript", "Responsive Design", "Web Standards"]
+        skills: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Responsive Design"
+        ]
     },
+
     {
         title: "Java Full Stack Web Development",
         issuer: "Eduskills",
         date: "2025",
         image: "edu skills.jpg",
-        skills: ["HTML", "CSS", "JavaScript", " React", "Java","Spring Boot","MySQl","AWS","AZURE","Git"]
+        skills: [
+            "Java",
+            "Spring Boot",
+            "React",
+            "MySQL",
+            "AWS",
+            "Azure",
+            "Git"
+        ]
     },
+
     {
         title: "Android App Development",
         issuer: "Google for Developers",
         date: "2025",
         image: "google for developers.jpg",
-        skills: ["Java", "kotlin", "MVVM", "Testing", "API integration","ViewModel"]
+        skills: [
+            "Java",
+            "Kotlin",
+            "MVVM",
+            "API Integration",
+            "Testing"
+        ]
     }
 
 ];
+
+
+function openCertModal(index) {
+
+    const cert = certifications[index];
+
+    if (!cert) return;
+
+    document.getElementById("certTitle").textContent =
+        cert.title;
+
+    document.getElementById("certIssuer").textContent =
+        "Issued by: " + cert.issuer;
+
+    document.getElementById("certDate").textContent =
+        "Date: " + cert.date;
+
+    document.getElementById("certImage").src =
+        cert.image;
+
+    document.getElementById("certSkillsList").innerHTML =
+        cert.skills
+            .map(skill => `<span>${skill}</span>`)
+            .join("");
+
+    document.getElementById("certModal")
+        .classList.add("active");
+
+}
+
+
+function closeCertModal() {
+
+    document.getElementById("certModal")
+        .classList.remove("active");
+
+}
+
+
+/* ================= PROJECTS ================= */
 
 const projects = [
+
     {
-        title: "Online Food Delivery Application",
-        description: "A modern food ordering platform designed for smooth browsing, cart flow, order placement, and a polished user experience.",
+
+        title: "AI Resume Builder",
+
+        description:
+            "An AI-powered resume generation tool that helps users create personalized, professional resumes quickly. It simplifies resume writing with smart content suggestions, structured sections, and a modern user experience for job seekers.",
+
+        image:
+            "resume.png",
+
         highlights: [
-            "Responsive online ordering experience",
-            "Restaurant listing and menu browsing",
-            "Cart, checkout, and order tracking flow",
-            "Scalable full-stack architecture"
+
+            "AI-assisted resume generation",
+
+            "Clean and modern UI",
+
+            "Tailwind-based responsive design",
+
+            "OpenAI-powered suggestions",
+
+            "Fast resume creation workflow"
+
         ],
-        tags: ["React", "Node.js", "MongoDB", "Stripe"],
-        image: "FOOD APPLICATION.png"
+
+        tags: [
+
+            "React.js",
+            "OpenAI",
+            "Tailwind CSS",
+            "Node.js"
+
+        ]
+
     },
+
+
     {
-        title: "Sales Performance Analysis Dashboard",
-        description: "A business-focused analytics dashboard that transforms sales data into clear KPIs, trends, and decision-ready insights.",
+
+        title: "Food Delivery Web Application",
+
+        description:
+            "A modern food ordering web application designed for smooth browsing, menu selection, cart management, and a clean user experience. It helps customers place orders quickly while the backend manages secure operations and reliable data handling.",
+
+        image:
+            "FOOD APPLICATION.png",
+
         highlights: [
-            "Executive dashboard with key metrics",
-            "Interactive charts and trend analysis",
-            "Sales performance tracking by region and product",
-            "Clear visual storytelling for stakeholders"
+
+            "Responsive food ordering interface",
+
+            "Menu browsing and selection flow",
+
+            "Cart and checkout experience",
+
+            "Secure backend processing",
+
+            "Java + Spring Boot + MySQL architecture"
+
         ],
-        tags: ["Power BI", "SQL", "Analytics", "Insights"],
-        image: "POWER BI.png"
+
+        tags: [
+
+            "React",
+            "Java",
+            "MySQL",
+            "Spring Boot"
+
+        ]
+
     },
+
+
     {
-        title: "IoT-Based Automated Black Box",
-        description: "An intelligent IoT-based solution for automated monitoring, real-time sensing, and smart event-based decision making.",
+
+        title:
+            "Sales Performance Analysis Dashboard",
+
+        description:
+            "An interactive Power BI dashboard designed to transform raw sales data into decision-ready business insights.",
+
+        image:
+            "POWER BI.png",
+
         highlights: [
-            "Real-time data collection and monitoring",
-            "Automation-focused embedded workflow",
-            "Smart trigger and detection logic",
-            "Practical IoT system design"
+
+            "Executive KPI dashboard",
+
+            "Sales trend analysis",
+
+            "Regional performance analysis",
+
+            "Product-level insights",
+
+            "Interactive filters"
+
         ],
-        tags: ["IoT", "Embedded", "Sensors", "Automation"],
-        image: "iot-blackbox.jpeg"
+
+        tags: [
+
+            "Power BI",
+            "SQL",
+            "Excel",
+            "Analytics"
+
+        ]
+
+    },
+
+
+    {
+
+        title:
+            "IoT-Based Automated Black Box",
+
+        description:
+            "An IoT solution designed for real-time monitoring, sensor data collection and automated event-based decision making.",
+
+        image:
+            "iot-blackbox.jpeg",
+
+        highlights: [
+
+            "Real-time monitoring",
+
+            "Sensor data collection",
+
+            "Automated event detection",
+
+            "Embedded system workflow",
+
+            "IoT architecture"
+
+        ],
+
+        tags: [
+
+            "IoT",
+            "Sensors",
+            "Embedded",
+            "Automation"
+
+        ]
+
     }
+
 ];
 
-function createPlaceholderImage(title, colors) {
-    const safeTitle = (title || 'Project').replace(/</g, '&lt;');
-    const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-            <defs>
-                <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="${colors[0]}" />
-                    <stop offset="100%" stop-color="${colors[1]}" />
-                </linearGradient>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#g)" />
-            <circle cx="260" cy="220" r="160" fill="rgba(255,255,255,0.18)" />
-            <circle cx="930" cy="600" r="220" fill="rgba(255,255,255,0.14)" />
-            <rect x="220" y="220" width="760" height="320" rx="32" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.32)" stroke-width="4" />
-            <text x="600" y="395" text-anchor="middle" font-size="44" font-family="Segoe UI, Arial, sans-serif" font-weight="700" fill="white">${safeTitle}</text>
-        </svg>`;
-    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
-
-function setProjectImage(imageElement, project) {
-    imageElement.src = project.image || createPlaceholderImage(project.title, ['#4f46e5', '#7c3aed']);
-    imageElement.onerror = () => {
-        imageElement.src = createPlaceholderImage(project.title, ['#0f172a', '#4338ca']);
-    };
-}
-
-function populateProjectImages() {
-    document.querySelectorAll('.project-card').forEach((card, index) => {
-        const imageElement = card.querySelector('.project-image');
-        if (imageElement) {
-            setProjectImage(imageElement, projects[index]);
-        }
-    });
-}
 
 function openProjectModal(index) {
+
     const project = projects[index];
-    const modal = document.getElementById('projectModal');
-    const singleImage = document.getElementById('projectModalImage');
-    const carouselDiv = document.getElementById('dashboardCarousel');
 
-    if (!project || !modal) return;
+    if (!project) return;
 
-    document.getElementById('projectModalTitle').textContent = project.title;
-    document.getElementById('projectModalDescription').textContent = project.description;
+    document.getElementById(
+        "projectModalTitle"
+    ).textContent = project.title;
 
-    // Check if this is the dashboard project (index 1)
-    if (index === 1) {
-        // Show carousel for dashboard
-        singleImage.style.display = 'none';
-        carouselDiv.style.display = 'block';
-        
-        document.getElementById('dashboardImg1').src = 'POWER BI.png';
-        document.getElementById('dashboardImg2').src = 'sales-dashboard.png';
-        
-        currentDashboardImage = 0;
-        showDashboardImage(0);
-    } else {
-        // Show single image for other projects
-        carouselDiv.style.display = 'none';
-        singleImage.style.display = 'block';
-        singleImage.src = project.image || createPlaceholderImage(project.title, ['#4f46e5', '#7c3aed']);
-        singleImage.onerror = () => {
-            singleImage.src = createPlaceholderImage(project.title, ['#0f172a', '#4338ca']);
-        };
-    }
 
-    const highlightsList = document.getElementById('projectModalHighlights');
-    highlightsList.innerHTML = project.highlights.map(item => `<li>${item}</li>`).join('');
+    document.getElementById(
+        "projectModalDescription"
+    ).textContent = project.description;
 
-    const tagsContainer = document.getElementById('projectModalTags');
-    tagsContainer.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
-    modal.style.display = 'block';
+    document.getElementById(
+        "projectModalImage"
+    ).src = project.image;
+
+
+    document.getElementById(
+        "projectModalHighlights"
+    ).innerHTML =
+
+        project.highlights
+            .map(item => `<li>${item}</li>`)
+            .join("");
+
+
+    document.getElementById(
+        "projectModalTags"
+    ).innerHTML =
+
+        project.tags
+            .map(tag => `<span>${tag}</span>`)
+            .join("");
+
+
+    document.getElementById(
+        "projectModal"
+    ).classList.add("active");
+
 }
 
-// Dashboard Carousel Functions
-let currentDashboardImage = 0;
-
-function showDashboardImage(index) {
-    const img1 = document.getElementById('dashboardImg1');
-    const img2 = document.getElementById('dashboardImg2');
-    const indicators = document.querySelectorAll('#dashboardCarousel .indicator');
-
-    img1.classList.remove('active');
-    img2.classList.remove('active');
-    indicators.forEach(ind => ind.classList.remove('active'));
-
-    if (index === 0) {
-        img1.classList.add('active');
-        indicators[0].classList.add('active');
-    } else {
-        img2.classList.add('active');
-        indicators[1].classList.add('active');
-    }
-
-    currentDashboardImage = index;
-}
-
-function nextDashboardImage() {
-    currentDashboardImage = (currentDashboardImage + 1) % 2;
-    showDashboardImage(currentDashboardImage);
-}
-
-function prevDashboardImage() {
-    currentDashboardImage = (currentDashboardImage - 1 + 2) % 2;
-    showDashboardImage(currentDashboardImage);
-}
 
 function closeProjectModal() {
-    const modal = document.getElementById('projectModal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
+
+    document.getElementById(
+        "projectModal"
+    ).classList.remove("active");
+
 }
 
-// Open Certification Modal
-function openCertModal(index) {
-    const cert = certifications[index];
-    const modal = document.getElementById('certModal');
-    
-    document.getElementById('certTitle').textContent = cert.title;
-    document.getElementById('certIssuer').textContent = cert.issuer;
-    document.getElementById('certDate').textContent = cert.date;
-    document.getElementById('certImage').src = cert.image;
-    
-    // Build skills list
-    const skillsList = document.getElementById('certSkillsList');
-    skillsList.innerHTML = cert.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('');
-    
-    modal.style.display = 'block';
-}
 
-// Close Certification Modal
-function closeCertModal() {
-    const modal = document.getElementById('certModal');
-    modal.style.display = 'none';
-}
+/* ================= CLOSE MODALS ================= */
 
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const certModal = document.getElementById('certModal');
-    const projectModal = document.getElementById('projectModal');
+window.addEventListener("click", event => {
+
+    const certModal =
+        document.getElementById("certModal");
+
+    const projectModal =
+        document.getElementById("projectModal");
+
 
     if (event.target === certModal) {
-        certModal.style.display = 'none';
+
+        closeCertModal();
+
     }
+
 
     if (event.target === projectModal) {
-        projectModal.style.display = 'none';
-    }
-};
 
-populateProjectImages();
+        closeProjectModal();
+
+    }
+
+});
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+        closeCertModal();
+
+        closeProjectModal();
+
+    }
+
+});
+
+
+/* ================= CONTACT FORM ================= */
+
+const contactForm =
+    document.getElementById("contactForm");
+
+const formStatus =
+    document.getElementById("formStatus");
+
+
+if (contactForm) {
+
+    contactForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const submitButton =
+                contactForm.querySelector(
+                    ".submit-btn"
+                );
+
+            const originalText =
+                submitButton.innerHTML;
+
+
+            submitButton.disabled = true;
+
+            submitButton.innerHTML =
+                "SENDING...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        contactForm.action,
+                        {
+
+                            method: "POST",
+
+                            body:
+                                new FormData(
+                                    contactForm
+                                ),
+
+                            headers: {
+
+                                Accept:
+                                    "application/json"
+
+                            }
+
+                        }
+                    );
+
+
+                if (response.ok) {
+
+                    formStatus.textContent =
+                        "Message sent successfully. Thank you!";
+
+                    contactForm.reset();
+
+                    submitButton.innerHTML =
+                        "MESSAGE SENT ✓";
+
+                } else {
+
+                    throw new Error(
+                        "Form submission failed"
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                formStatus.textContent =
+                    "Something went wrong. Please try again.";
+
+                submitButton.innerHTML =
+                    originalText;
+
+            }
+
+
+            setTimeout(() => {
+
+                submitButton.disabled = false;
+
+                submitButton.innerHTML =
+                    originalText;
+
+            }, 4000);
+
+        }
+    );
+
+}
